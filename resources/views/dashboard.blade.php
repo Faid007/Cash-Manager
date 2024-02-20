@@ -11,22 +11,22 @@
         <div
             class="block max-w-[200px] p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Saldo Kamu Faid</h5>
-            <p class="font-normal text-gray-700 dark:text-gray-400">Rp. 125.000.000.00</p>
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Saldo Kamu</h5>
+            <p class="font-normal text-gray-700 dark:text-gray-400">Bisa kalian bikin sama sama yak</p>
         </div>
 
         <div
             class="block max-w-[200px] p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Uang Masuk</h5>
-            <p class="font-normal text-gray-700 dark:text-gray-400">Rp. 125.000.00</p>
+            <p class="font-normal text-gray-700 dark:text-gray-400">kalo bingung tanya aja ke faid</p>
         </div>
 
         <div
             class="block max-w-[200px] p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Uang Keluar</h5>
-            <p class="font-normal text-gray-700 dark:text-gray-400">Rp. 125.000.00</p>
+            <p class="font-normal text-gray-700 dark:text-gray-400">atau ke temannya faid juga bisa</p>
         </div>
     </div>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use App\Models\LaporanUangKeluar;
 use App\Models\UangKeluar;
 use Illuminate\Http\Request;
 
@@ -49,6 +50,20 @@ class UangKeluarController extends Controller
             'tanggal' => $request->tanggal,
         ]);
 
+        $bulan = date('Y-m', strtotime($request->tanggal));
+
+        $laporan = LaporanUangKeluar::where('bulan', $bulan)->first();
+
+        if ($laporan) {
+            $laporan->total_nominal += $request->nominal;
+            $laporan->save();
+        } else {
+            LaporanUangKeluar::create([
+                'bulan' => $bulan,
+                'total_nominal' => $request->nominal,
+            ]);
+        }
+
         return redirect()->route('keluar.index');
     }
 
@@ -85,14 +100,43 @@ class UangKeluarController extends Controller
             'tanggal' => 'required'
         ]);
 
-        $uangMasuk = UangKeluar::findOrFail($id);
+        $uangKeluar = UangKeluar::findOrFail($id);
 
-        $uangMasuk->update([
+        $oldDate = $uangKeluar->tanggal;
+        $oldNominal = $uangKeluar->nominal;
+
+        $uangKeluar->update([
             'kategori_id' => $request->kategori,
             'nominal' => $request->nominal,
             'keterangan' => $request->keterangan,
             'tanggal' => $request->tanggal,
         ]);
+
+        $oldMonth = date('Y-m', strtotime($oldDate));
+        $newMonth = date('Y-m', strtotime($request->tanggal));
+
+        if ($oldMonth !== $newMonth) {
+            $oldLaporan = LaporanUangKeluar::where('bulan', $oldMonth)->first();
+            $oldLaporan->total_nominal -= $oldNominal;
+            $oldLaporan->save();
+
+            $newLaporan = LaporanUangKeluar::where('bulan', $newMonth)->first();
+
+            if ($newLaporan) {
+                $newLaporan->total_nominal += $request->nominal;
+                $newLaporan->save();
+            } else {
+                LaporanUangKeluar::create([
+                    'bulan' => $newMonth,
+                    'total_nominal' => $request->nominal,
+                ]);
+            }
+        } else {
+            $laporan = LaporanUangKeluar::where('bulan', $newMonth)->first();
+            $laporan->total_nominal += ($request->nominal - $oldNominal);
+            $laporan->save();
+        }
+
 
         return redirect()->route('keluar.index');
     }
@@ -102,7 +146,18 @@ class UangKeluarController extends Controller
      */
     public function destroy(string $id)
     {
-        UangKeluar::where('id', $id)->delete();
+        $uangKeluar = UangKeluar::findOrFail($id);
+
+        $tanggal = $uangKeluar->tanggal;
+        $nominal = $uangKeluar->nominal;
+
+        $uangKeluar->delete();
+
+        $bulan = date('Y-m', strtotime($tanggal));
+
+        $laporan = LaporanUangKeluar::where('bulan', $bulan)->first();
+        $laporan->total_nominal -= $nominal;
+        $laporan->save();
 
         return redirect()->route('keluar.index');
     }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KategoriUangKeluarController;
+use App\Http\Controllers\LaporanUangKeluarController;
 use App\Http\Controllers\LaporanUangMasukController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -66,17 +67,8 @@ Route::delete('/keluar/uang-keluar/hapus/{id}', [UangKeluarController::class, 'd
 //route laporan uang masuk
 Route::get('/laporan/uang-masuk', [LaporanUangMasukController::class, 'index'])->name('laporan-masuk.index');
 
-Route::get('/laporan/uang-masuk/show', function () {
-    return view('form.laporan.uang-masuk.show');
-})->middleware(['auth'])->name('laporan-masuk.show');
-
 //route laporan uang keluar
-Route::get('/laporan/uang-keluar', function () {
-    return view('form.laporan.uang-keluar.index');
-})->middleware(['auth'])->name('laporan-keluar.index');
+Route::get('/laporan/uang-keluar', [LaporanUangKeluarController::class, 'index'])->name('laporan-keluar.index');
 
-Route::get('/laporan/uang-keluar/show', function () {
-    return view('form.laporan.uang-keluar.show');
-})->middleware(['auth'])->name('laporan-keluar.show');
 
 require __DIR__ . '/auth.php';
