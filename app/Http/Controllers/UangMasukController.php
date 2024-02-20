@@ -105,7 +105,6 @@ class UangMasukController extends Controller
 
         $uangMasuk = UangMasuk::findOrFail($id);
 
-        // Simpan data lama untuk mendapatkan bulan sebelum diupdate
         $oldDate = $uangMasuk->tanggal;
         $oldNominal = $uangMasuk->nominal;
 
@@ -116,34 +115,26 @@ class UangMasukController extends Controller
             'tanggal' => $request->tanggal,
         ]);
 
-        // Ambil bulan dari tanggal sebelum diupdate
         $oldMonth = date('Y-m', strtotime($oldDate));
-        // Ambil bulan dari tanggal setelah diupdate
         $newMonth = date('Y-m', strtotime($request->tanggal));
 
-        // Jika bulan berubah, update laporan uang masuk
         if ($oldMonth !== $newMonth) {
-            // Kurangi total nominal laporan lama
             $oldLaporan = LaporanUangMasuk::where('bulan', $oldMonth)->first();
             $oldLaporan->total_nominal -= $oldNominal;
             $oldLaporan->save();
 
-            // Cek apakah sudah ada laporan untuk bulan baru
             $newLaporan = LaporanUangMasuk::where('bulan', $newMonth)->first();
 
             if ($newLaporan) {
-                // Jika laporan sudah ada, tambahkan nominal baru ke total_nominal
                 $newLaporan->total_nominal += $request->nominal;
                 $newLaporan->save();
             } else {
-                // Jika belum ada laporan untuk bulan baru, buat laporan baru
                 LaporanUangMasuk::create([
                     'bulan' => $newMonth,
                     'total_nominal' => $request->nominal,
                 ]);
             }
         } else {
-            // Jika bulan tidak berubah, update total nominal laporan yang sesuai
             $laporan = LaporanUangMasuk::where('bulan', $newMonth)->first();
             $laporan->total_nominal += ($request->nominal - $oldNominal);
             $laporan->save();
@@ -157,7 +148,18 @@ class UangMasukController extends Controller
      */
     public function destroy(string $id)
     {
-        UangMasuk::where('id', $id)->delete();
+        $uangMasuk = UangMasuk::findOrFail($id);
+
+        $tanggal = $uangMasuk->tanggal;
+        $nominal = $uangMasuk->nominal;
+
+        $uangMasuk->delete();
+
+        $bulan = date('Y-m', strtotime($tanggal));
+
+        $laporan = LaporanUangMasuk::where('bulan', $bulan)->first();
+        $laporan->total_nominal -= $nominal;
+        $laporan->save();
 
         return redirect()->route('masuk.index');
     }
