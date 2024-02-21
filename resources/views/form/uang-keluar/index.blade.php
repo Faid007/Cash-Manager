@@ -5,7 +5,7 @@
                 Uang Keluar
             </h2>
 
-            <x-button href="{{ route('keluar.add') }}" variant="black" class="items-center max-w-xs gap-2">
+            <x-button href="{{ route('keluar.add') }}" variant="purple" class="items-center max-w-xs gap-2">
                 <span>Tambah</span>
             </x-button>
         </div>

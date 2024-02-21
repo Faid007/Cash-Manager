@@ -5,7 +5,7 @@
                 Uang Masuk
             </h2>
 
-            <x-button href="{{ route('masuk.add') }}" variant="black" class="items-center max-w-xs gap-2">
+            <x-button href="{{ route('masuk.add') }}" variant="purple" class="items-center max-w-xs gap-2">
                 <span>Tambah</span>
             </x-button>
         </div>

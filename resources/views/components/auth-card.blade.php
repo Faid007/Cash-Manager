@@ -1,7 +1,8 @@
 <main class="flex flex-col items-center flex-1 px-4 pt-6 sm:justify-center">
     <div>
-        <a href="/">
-            <x-application-logo class="w-20 h-20" />
+        <a href="/" class="flex flex-col justify-center items-center">
+            <img src="https://i.ibb.co/f4b1zWv/Picsart-24-02-22-00-06-15-783.png" alt="00000" width="250px">
+            <h1 class="text-center font-bold text-5xl">Cash Maneger RPL 2 </h1>
         </a>
     </div>
 
