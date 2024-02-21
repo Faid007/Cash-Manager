@@ -52,7 +52,7 @@
                                 {{ $uangKeluar->tanggal }}
                             </td>
                             <td class="px-6 py-4">
-                                <div class="flex">
+                            <div class="flex">
                                     <a href="{{ url("/keluar/uang-keluar/tambah/$uangKeluar->id") }}">
                                         <button type="submit"
                                             class="text-white bg-purple-400 focus:ring-4 focus:outline-none focus:ring-purple-400 dark:focus:ring-purple-800 font-medium rounded-lg text-xm px-2 py-1 text-center me-2 mb-2">Edit</button>
