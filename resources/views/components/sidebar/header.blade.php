@@ -1,8 +1,8 @@
 <div class="flex items-center justify-between flex-shrink-0 px-3">
     <!-- Logo -->
     <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2">
-        <x-application-logo aria-hidden="true" class="w-10 h-auto" />
-
+        <img src="https://i.ibb.co/f4b1zWv/Picsart-24-02-22-00-06-15-783.png" alt="00000" width="50px">
+            <h1 class="font-bold"> CM RPL </h1>
         <span class="sr-only">Dashboard</span>
     </a>
 

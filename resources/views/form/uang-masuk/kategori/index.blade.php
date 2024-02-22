@@ -5,9 +5,9 @@
                 Kategori
             </h2>
 
-            <x-button href="{{ route('kategori-masuk.add') }}" variant="black" class="items-center max-w-xs gap-2">
+            <x-button href="{{ route('kategori-masuk.add') }}" variant="purple" class="items-center max-w-xs gap-2">
                 <span>Tambah Kategori</span>
-            </x-button>
+            </x-button >
         </div>
     </x-slot>
 
@@ -38,7 +38,7 @@
                             <td class="px-6 py-4">
                                 <a href="{{ url("kategori/tambah/$kategori->id") }}">
                                     <button type="submit"
-                                        class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-xm px-2 py-1 text-center me-2 mb-2">Edit</button>
+                                        class="text-white bg-purple-400 focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-xm px-2 py-1 text-center me-2 mb-2">Edit</button>
                                 </a>
                             </td>
                         </tr>

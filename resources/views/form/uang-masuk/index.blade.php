@@ -5,7 +5,7 @@
                 Uang Masuk
             </h2>
 
-            <x-button href="{{ route('masuk.add') }}" variant="black" class="items-center max-w-xs gap-2">
+            <x-button href="{{ route('masuk.add') }}" variant="purple" class="items-center max-w-xs gap-2">
                 <span>Tambah</span>
             </x-button>
         </div>
@@ -55,7 +55,7 @@
                                 <div class="flex">
                                     <a href="{{ url("/masuk/uang-masuk/tambah/$uangMasuk->id") }}">
                                         <button type="submit"
-                                            class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-xm px-2 py-1 text-center me-2 mb-2">Edit</button>
+                                            class="text-white bg-purple-400 focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-xm px-2 py-1 text-center me-2 mb-2">Edit</button>
                                     </a>
 
                                     <form action=" {{ url("/masuk/uang-masuk/hapus/$uangMasuk->id") }} " method="post">
@@ -63,7 +63,7 @@
                                         @method('DELETE')
                                         <button type="submit"
                                             onclick="return confirm('Apakah Anda yakin ingin menghapus item ini?')"
-                                            class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-xm px-2 py-1 text-center me-2 mb-2">Hapus</button>
+                                            class="text-white bg-purple-400 focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-xm px-2 py-1 text-center me-2 mb-2">Hapus</button>
                                     </form>
                                 </div>
 
